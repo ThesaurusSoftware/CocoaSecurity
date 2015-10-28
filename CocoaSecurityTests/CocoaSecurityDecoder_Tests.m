@@ -55,6 +55,7 @@
     NSData *actual = [_decoder base64:@"c291cmNl"];
     XCTAssertEqualObjects(expected, actual, @"");
 }
+
 - (void)testDecodeBase64Nil
 {
     NSData *actual = [_decoder base64:@""];
