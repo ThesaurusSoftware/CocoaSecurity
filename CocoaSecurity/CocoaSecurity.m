@@ -394,12 +394,12 @@
 - (NSString *)hex
 {
     CocoaSecurityEncoder *encoder = [CocoaSecurityEncoder new];
-    return [encoder hex:_data useLower:false];
+    return [encoder hex:_data useLower:NO];
 }
 - (NSString *)hexLower
 {
     CocoaSecurityEncoder *encoder = [CocoaSecurityEncoder new];
-    return [encoder hex:_data useLower:true];
+    return [encoder hex:_data useLower:YES];
 }
 
 #pragma mark Base64
@@ -504,7 +504,7 @@
     NSUInteger length = strlen(source) / 2;
     buffer = malloc(length);
     for (NSUInteger index = 0; index < length; index++) {
-        buffer[index] = (HexDecodeChars[source[index * 2]] << 4) + (HexDecodeChars[source[index * 2 + 1]]);
+        buffer[index] = (HexDecodeChars[(unsigned char)source[index * 2]] << 4) + (HexDecodeChars[(unsigned char)source[index * 2 + 1]]);
     }
     // init result NSData
     NSData *result = [NSData dataWithBytes:buffer length:length];
